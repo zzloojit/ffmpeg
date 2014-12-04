@@ -101,11 +101,11 @@ int poll_loop (int fd)
   int k = 0, j = 0;
   char* buff = NULL;
   char* frame = NULL;
-  int wd = open("/tmp/remote.mp4", O_WRONLY|O_CREAT|O_TRUNC, 0666);
-  if (wd == -1) {
-    fprintf(stderr, "errno is %s\n", strerror(errno));
-    assert (0);
-  }
+  //int wd = open("/tmp/remote.mp4", O_WRONLY|O_CREAT|O_TRUNC, 0666);
+  /* if (wd == -1) { */
+  /*   fprintf(stderr, "errno is %s\n", strerror(errno)); */
+  /*   assert (0); */
+  /* } */
   init_decode();
   while (1) {
     k = read_safe(fd, &pkt_size, 4);
@@ -113,7 +113,7 @@ int poll_loop (int fd)
       return -1;
     }
   
-    fprintf(stderr, "read head size is %d\n", pkt_size);
+    //fprintf(stderr, "read head size is %d\n", pkt_size);
     buff = malloc (pkt_size);
     j = read_safe (fd, buff, pkt_size);
 
@@ -123,11 +123,11 @@ int poll_loop (int fd)
     frame = decode_frame(buff, pkt_size);
     assert (frame);
     update_frame (frame , screen);
-    k = write_safe (wd, buff, pkt_size);
-    if (k == -1) {
-      assert (0);
-    }
-    fprintf(stderr, "read buf size is %d\n", j);
+    /* k = write_safe (wd, buff, pkt_size); */
+    /* if (k == -1) { */
+    /*   assert (0); */
+    /* } */
+    /* fprintf(stderr, "read buf size is %d\n", j); */
     free(buff);
   }  
 }

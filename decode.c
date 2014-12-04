@@ -96,14 +96,14 @@ char* decode_frame(char* inbuf, size_t size)
   
   if (got_frame) {
     id++;
-    snprintf(tmp_buf, sizeof(tmp_buf), "/tmp/%d.pgm", id);
-    pgm_save (frame->data[0], frame->linesize[0],
-	      context->width, context->height, tmp_buf);
+    //snprintf(tmp_buf, sizeof(tmp_buf), "/tmp/%d.pgm", id);
+    //pgm_save (frame->data[0], frame->linesize[0],
+    //	      context->width, context->height, tmp_buf);
     toRGB(avf, frame);
   }
   
   assert (avpkt.size =len);
-  printf("frame format is %d\n", frame->format);
+  //printf("frame format is %d\n", frame->format);
   //sws_scale (pSwsCxt, frame->data, 
   return avf->data[0];
 }
